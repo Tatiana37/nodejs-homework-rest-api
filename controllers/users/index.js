@@ -1,14 +1,13 @@
 import operations from "../../contactsApp/index";
 import { HttpCode } from "../../lib/constants";
-const getContactById = async (req, res, _next) => {
+
+const aggregation = async (req, res, next) => {
   const { id } = req.params;
-  const {id: userId} = req.user;
-  const contact = await operations.getContactById( userId, id );
-  console.log(contact);
-  if (contact) {
+  const data = await operations.getStatisticsContacts( id );
+  if (data) {
     return res
       .status(HttpCode.OK)
-      .json({ status: "success", code: HttpCode.OK, data: { contact } });
+      .json({ status: "success", code: HttpCode.OK, data });
   }
   res.status(HttpCode.NOT_FOUND).json({
     status: "error",
@@ -16,4 +15,5 @@ const getContactById = async (req, res, _next) => {
     message: "Not found",
   });
 };
-export default getContactById;
+
+export  { aggregation };
