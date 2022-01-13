@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import Users from "../../contactsApp/users";
+import jwt from 'jsonwebtoken';
+import Users from '../../contactsApp/users';
 const SECRET_KEY = process.env.JWT_SECRET_KEY;
 class AuthService {
   async isUserExist(email) {
@@ -8,8 +8,8 @@ class AuthService {
   }
 
   async create(body) {
-    const { id, name, email, role } = await Users.create(body);
-    return { id, name, email, role };
+    const { id, name, email, role, avatar } = await Users.create(body);
+    return { id, name, email, role, avatar };
   }
 
   async getUser(email, password) {
@@ -24,7 +24,7 @@ class AuthService {
   getToken(user) {
     const { id, email } = user;
     const payload = { id, email };
-    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1w" });
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1w' });
     return token;
   }
 
