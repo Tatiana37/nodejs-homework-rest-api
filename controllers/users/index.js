@@ -3,13 +3,13 @@ import users from '../../contactsApp/users';
 import { HttpCode } from '../../lib/constants';
 import {
   UploadFileService,
-  LocalFileStorage,
+  // LocalFileStorage,
   CloudFileStorage,
 } from '../../service/file-storage';
 import {
   EmailService,
   SenderNodemailer,
-  SenderSendgrid,
+  // SenderSendgrid,
 } from '../../service/email';
 
 const aggregation = async (req, res, next) => {
